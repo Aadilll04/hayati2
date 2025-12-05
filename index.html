@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aadil's Romantic Surprise for Rahin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+            color: #5a3d5c;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .page {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            display: none;
+            animation: fadeIn 0.8s ease-out;
+            min-height: 500px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #ff6b8b;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8rem;
+            color: #ff6b8b;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            color: #5a3d5c;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: #666;
+        }
+
+        .heart {
+            color: #ff6b8b;
+            font-size: 1.5rem;
+            margin: 0 5px;
+        }
+
+        .btn {
+            background: linear-gradient(to right, #ff6b8b, #ff8e53);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 107, 139, 0.3);
+            display: inline-block;
+            margin: 10px;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 139, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        .btn-small {
+            padding: 12px 25px;
+            font-size: 1.1rem;
+        }
+
+        .btn-hint {
+            background: linear-gradient(to right, #36d1dc, #5b86e5);
+            box-shadow: 0 5px 15px rgba(91, 134, 229, 0.3);
+        }
+
+        .input-container {
+            margin: 30px 0;
+        }
+
+        input[type="text"] {
+            padding: 16px 20px;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 50px;
+            border: 2px solid #ffc1cc;
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 20px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #ff6b8b;
+        }
+
+        .emoji-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .emoji-btn {
+            font-size: 3.5rem;
+            background: none;
+            border: 3px solid transparent;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .emoji-btn:hover {
+            transform: scale(1.1);
+            border-color: #ffc1cc;
+            background-color: rgba(255, 193, 204, 0.2);
+        }
+
+        .emoji-btn.selected {
+            border-color: #ff6b8b;
+            background-color: rgba(255, 107, 139, 0.1);
+            transform: scale(1.1);
+        }
+
+        .rewards-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .reward-card {
+            background: linear-gradient(135deg, #fff5f7, #ffeef1);
+            border-radius: 15px;
+            padding: 25px;
+            width: 200px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .reward-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .reward-card i {
+            font-size: 3rem;
+            color: #ff6b8b;
+            margin-bottom: 15px;
+        }
+
+        .reward-card h4 {
+            font-size: 1.5rem;
+            color: #5a3d5c;
+            margin-bottom: 10px;
+        }
+
+        .message {
+            font-size: 1.4rem;
+            background: linear-gradient(to right, #ff6b8b, #ff8e53);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 600;
+            margin: 20px 0;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .hint-text {
+            font-style: italic;
+            color: #36d1dc;
+            font-size: 1.3rem;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(54, 209, 220, 0.1);
+            border-radius: 10px;
+            display: none;
+        }
+
+        .hint-text.show {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .click-counter {
+            font-size: 1rem;
+            color: #999;
+            margin-top: 15px;
+        }
+
+        .instructions {
+            font-size: 1.1rem;
+            color: #888;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px dashed #ddd;
+        }
+
+        .floating-hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart-particle {
+            position: absolute;
+            color: #ff6b8b;
+            font-size: 1.5rem;
+            opacity: 0;
+            animation: float 5s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 1rem;
+            color: #888;
+        }
+
+        .page-indicator {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .page-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin: 0 5px;
+            transition: background-color 0.3s;
+        }
+
+        .page-dot.active {
+            background-color: #ff6b8b;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .page {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            .btn {
+                padding: 14px 30px;
+                font-size: 1.2rem;
+            }
+            
+            .emoji-btn {
+                width: 80px;
+                height: 80px;
+                font-size: 2.8rem;
+            }
+            
+            .reward-card {
+                width: 160px;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Page 1 - Click Me Button -->
+        <div id="page1" class="page active">
+            <div class="floating-hearts" id="hearts1"></div>
+            <h1>For My Rahin <i class="fas fa-heart heart"></i></h1>
+            <p>Welcome to a little game made with love by Aadil.</p>
+            <p>Click the button below to begin your romantic journey...</p>
+            
+            <div style="margin: 60px 0;">
+                <button id="clickMeBtn" class="btn">
+                    <span id="btnText">Click Me to Enter Rahin</span>
+                </button>
+                <div class="click-counter" id="clickCounter">Click 1 of 5</div>
+            </div>
+            
+            <div class="instructions">
+                Keep clicking until the button stops moving!
+            </div>
+        </div>
+
+        <!-- Page 2 - Word Guess -->
+        <div id="page2" class="page">
+            <div class="floating-hearts" id="hearts2"></div>
+            <h2>Hello Rahin!</h2>
+            <h3>To move forward, guess the word Aadil told you cutely</h3>
+            
+            <div class="input-container">
+                <input type="text" id="guessInput" placeholder="Enter the word here...">
+                <button id="submitGuess" class="btn">Submit</button>
+            </div>
+            
+            <p class="message" id="message"></p>
+            
+            <div style="margin: 40px 0;">
+                <button id="hintBtn" class="btn btn-hint btn-small">
+                    <span id="hintText">Need a hint? Click me!</span>
+                </button>
+                <div class="click-counter" id="hintCounter">Hint click 1 of 3</div>
+            </div>
+            
+            <div class="hint-text" id="hintDisplay">
+                <i class="fas fa-lightbulb"></i> The word rhymes with "buffer"
+            </div>
+            
+            <div class="instructions">
+                Can't remember? Use the hint button, but it will tease you first!
+            </div>
+        </div>
+
+        <!-- Page 3 - Emoji Selection -->
+        <div id="page3" class="page">
+            <div class="floating-hearts" id="hearts3"></div>
+            <h2>Nice work, Rahin!</h2>
+            <h3>Now choose the correct emoji:</h3>
+            <p>From which emoji does Aadil know Rahin is in anger?</p>
+            
+            <div class="emoji-options">
+                <button class="emoji-btn" data-emoji="😠">😠</button>
+                <button class="emoji-btn" data-emoji="🤬">🤬</button>
+                <button class="emoji-btn" data-emoji="😤">😤</button>
+                <button class="emoji-btn" data-emoji="🙂">🙂</button>
+                <button class="emoji-btn" data-emoji="💢">💢</button>
+                <button class="emoji-btn" data-emoji="👿">👿</button>
+            </div>
+            
+            <div style="margin: 30px 0;">
+                <button id="submitEmoji" class="btn" disabled>Check Answer</button>
+            </div>
+            
+            <p class="message" id="emojiMessage"></p>
+            
+            <div class="instructions">
+                Choose carefully! Only one emoji reveals the secret...
+            </div>
+        </div>
+
+        <!-- Page 4 - Rewards -->
+        <div id="page4" class="page">
+            <div class="floating-hearts" id="hearts4"></div>
+            <h1>Congratulations Rahin! <i class="fas fa-heart heart"></i></h1>
+            <h3>You've successfully completed all challenges!</h3>
+            <p>As promised, here are your rewards:</p>
+            
+            <div class="rewards-container">
+                <div class="reward-card">
+                    <i class="fas fa-kiss-wink-heart"></i>
+                    <h4>2x Kisses</h4>
+                    <p>Fresh and loving</p>
+                </div>
+                <div class="reward-card">
+                    <i class="fas fa-hands"></i>
+                    <h4>1 Tight Hug</h4>
+                    <p>Warm and comforting</p>
+                </div>
+            </div>
+            
+            <p class="message">Now come back to me baby, click below to come in chat</p>
+            <p style="font-size: 1.3rem; margin-bottom: 30px;">And also I want my rewards too! <i class="fas fa-smile-wink"></i></p>
+            
+            <a href="https://www.instagram.com/direct/inbox/" target="_blank">
+                <button class="btn">
+                    <i class="fab fa-instagram"></i> Go to Instagram Chat
+                </button>
+            </a>
+            
+            <div class="footer">
+                <p>Made with <i class="fas fa-heart heart"></i> by Aadil for his beautiful wife Rahin</p>
+            </div>
+        </div>
+
+        <!-- Page Indicator -->
+        <div class="page-indicator">
+            <div class="page-dot active" data-page="1"></div>
+            <div class="page-dot" data-page="2"></div>
+            <div class="page-dot" data-page="3"></div>
+            <div class="page-dot" data-page="4"></div>
+        </div>
+    </div>
+
+    <script>
+        // Game state variables
+        let clickCount = 0;
+        let hintClickCount = 0;
+        let selectedEmoji = null;
+        const correctWord = "duffer";
+        
+        // DOM elements
+        const pages = document.querySelectorAll('.page');
+        const pageDots = document.querySelectorAll('.page-dot');
+        const clickMeBtn = document.getElementById('clickMeBtn');
+        const btnText = document.getElementById('btnText');
+        const clickCounter = document.getElementById('clickCounter');
+        const hintBtn = document.getElementById('hintBtn');
+        const hintText = document.getElementById('hintText');
+        const hintCounter = document.getElementById('hintCounter');
+        const hintDisplay = document.getElementById('hintDisplay');
+        const guessInput = document.getElementById('guessInput');
+        const submitGuess = document.getElementById('submitGuess');
+        const message = document.getElementById('message');
+        const emojiBtns = document.querySelectorAll('.emoji-btn');
+        const submitEmoji = document.getElementById('submitEmoji');
+        const emojiMessage = document.getElementById('emojiMessage');
+        
+        // Initialize floating hearts
+        function createFloatingHearts(containerId) {
+            const container = document.getElementById(containerId);
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart-particle');
+                heart.innerHTML = '<i class="fas fa-heart"></i>';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                container.appendChild(heart);
+            }
+        }
+        
+        // Initialize all heart animations
+        createFloatingHearts('hearts1');
+        createFloatingHearts('hearts2');
+        createFloatingHearts('hearts3');
+        createFloatingHearts('hearts4');
+        
+        // Page navigation
+        function showPage(pageNumber) {
+            // Hide all pages
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show selected page
+            document.getElementById(`page${pageNumber}`).classList.add('active');
+            
+            // Update page indicator
+            pageDots.forEach(dot => dot.classList.remove('active'));
+            document.querySelector(`.page-dot[data-page="${pageNumber}"]`).classList.add('active');
+        }
+        
+        // Page 1: Click Me Button Logic
+        clickMeBtn.addEventListener('click', function() {
+            clickCount++;
+            
+            // Update click counter
+            clickCounter.textContent = `Click ${clickCount} of 5`;
+            
+            // Move button to random position
+            const maxX = window.innerWidth - this.offsetWidth - 40;
+            const maxY = window.innerHeight - this.offsetHeight - 40;
+            
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            
+            this.style.position = 'fixed';
+            this.style.left = randomX + 'px';
+            this.style.top = randomY + 'px';
+            
+            // Change button text based on click count
+            const texts = [
+                "Click Me to Enter Rahin",
+                "Rahin, click me again!",
+                "Almost there, my love!",
+                "One more time, Rahin!",
+                "Last click, beautiful!"
+            ];
+            
+            btnText.textContent = texts[clickCount - 1] || texts[texts.length - 1];
+            
+            // After 5 clicks, go to page 2
+            if (clickCount >= 5) {
+                setTimeout(() => {
+                    showPage(2);
+                }, 500);
+            }
+        });
+        
+        // Page 2: Word Guess Logic
+        submitGuess.addEventListener('click', function() {
+            const userGuess = guessInput.value.trim().toLowerCase();
+            
+            if (userGuess === correctWord) {
+                message.textContent = "Correct! You remembered our cute word!";
+                message.style.color = "#36d1dc";
+                
+                setTimeout(() => {
+                    showPage(3);
+                }, 1500);
+            } else {
+                message.textContent = "Oops! That's not right. Try again or use the hint!";
+                message.style.color = "#ff6b8b";
+                
+                // Shake animation for wrong answer
+                guessInput.style.animation = 'none';
+                setTimeout(() => {
+                    guessInput.style.animation = 'shake 0.5s';
+                }, 10);
+            }
+        });
+        
+        // Allow pressing Enter to submit guess
+        guessInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                submitGuess.click();
+            }
+        });
+        
+        // Page 2: Hint Button Logic
+        hintBtn.addEventListener('click', function() {
+            hintClickCount++;
+            
+            // Update hint counter
+            hintCounter.textContent = `Hint click ${hintClickCount} of 3`;
+            
+            // Move hint button to random position
+            const maxX = window.innerWidth - this.offsetWidth - 40;
+            const maxY = window.innerHeight - this.offsetHeight - 40;
+            
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            
+            this.style.position = 'fixed';
+            this.style.left = randomX + 'px';
+            this.style.top = randomY + 'px';
+            
+            // Change hint button text
+            const hintTexts = [
+                "Need a hint? Click me!",
+                "So you are asking for hint, lol, okay click me again",
+                "Last time, then I'll give you the hint!",
+                "Here's your hint!"
+            ];
+            
+            hintText.textContent = hintTexts[hintClickCount - 1] || hintTexts[hintTexts.length - 1];
+            
+            // After 3 clicks, show the hint
+            if (hintClickCount >= 3) {
+                hintDisplay.classList.add('show');
+                this.disabled = true;
+                this.style.opacity = '0.7';
+                this.style.cursor = 'default';
+            }
+        });
+        
+        // Page 3: Emoji Selection Logic
+        emojiBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove selected class from all emoji buttons
+                emojiBtns.forEach(b => b.classList.remove('selected'));
+                
+                // Add selected class to clicked button
+                this.classList.add('selected');
+                
+                // Store selected emoji
+                selectedEmoji = this.getAttribute('data-emoji');
+                
+                // Enable submit button
+                submitEmoji.disabled = false;
+            });
+        });
+        
+        // Page 3: Submit Emoji Logic
+        submitEmoji.addEventListener('click', function() {
+            if (selectedEmoji === "🙂") {
+                emojiMessage.textContent = "Correct! You know I can always tell from that smile!";
+                emojiMessage.style.color = "#36d1dc";
+                
+                setTimeout(() => {
+                    showPage(4);
+                }, 1500);
+            } else {
+                emojiMessage.textContent = "Not this one! Try again, my love!";
+                emojiMessage.style.color = "#ff6b8b";
+                
+                // Reset selection
+                emojiBtns.forEach(b => b.classList.remove('selected'));
+                selectedEmoji = null;
+                submitEmoji.disabled = true;
+            }
+        });
+        
+        // Add shake animation for wrong answers
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% {transform: translateX(0);}
+                10%, 30%, 50%, 70%, 90% {transform: translateX(-5px);}
+                20%, 40%, 60%, 80% {transform: translateX(5px);}
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Initialize the game
+        window.addEventListener('DOMContentLoaded', () => {
+            // Set initial state
+            clickCount = 0;
+            hintClickCount = 0;
+            selectedEmoji = null;
+            
+            // Show page 1
+            showPage(1);
+        });
+    </script>
+</body>
+</html>
